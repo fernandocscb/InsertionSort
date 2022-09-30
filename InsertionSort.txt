@@ -1,0 +1,33 @@
+Faça um algoritmo de ordenação utilizando o método insertion sort.
+Crie um método que execute as seguintes operações:
+
+- Tamanho do vetor: 30;
+- Utilize números ímpares;
+- Opere em ordem crescente.
+
+
+static void sort(int *arr, int size, bool desc) {
+    int x, y, value;
+    for (x = 1; x < size; x++) {
+        value = arr[x];
+        for (y = x - 1; y >= 0 && (desc ? arr[y] < value : arr[y] > value); y--)
+            arr[y + 1] = arr[y];
+        arr[y + 1] = value;
+    }
+}
+
+
+int main(void) {
+    int i, arr[] = {29, 3, 41, 15, 55, 37, 49, 25, 53, 31, 45, 23, 55, 19, 43, 27, 35, 13, 5, 21, 9, 11, 51, 17, 39, 25, 7, 1, 33, 47, };
+    sort(arr, SIZEOF_ARRAY(arr), false);
+    printf("%d", arr[0]);
+    for (i = 1; i < SIZEOF_ARRAY(arr); i++)
+        printf(", %d", arr[i]);
+    putchar('\n');
+    sort(arr, SIZEOF_ARRAY(arr), true);
+    printf("%d", arr[0]);
+    for (i = 1; i < SIZEOF_ARRAY(arr); i++)
+        printf(", %d", arr[i]);
+    putchar('\n');
+    return EXIT_SUCCESS;
+}
